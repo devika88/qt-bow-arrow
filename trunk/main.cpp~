@@ -1,0 +1,24 @@
+#include "man.h"
+#include "arrow.h"
+#include "bubble.h"
+#include <QApplication>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+
+
+int main(int argc, char *argv[]){
+  QApplication app(argc, argv);
+  QGraphicsView *view = new QGraphicsView();
+  QGraphicsScene *scene = new QGraphicsScene();
+  scene->setSceneRect(0,0,800,600);
+  Man *m = new Man(scene);
+  Arrow *a = new Arrow(scene, view);
+  Bubble *b = new Bubble(scene);  
+  view->setScene(scene);
+  view->setDragMode(QGraphicsView::NoDrag);
+  view->setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Bow Arrow"));
+  view->resize(600, 500);
+  view->show();
+  return app.exec();
+}
+ 

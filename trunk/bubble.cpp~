@@ -1,0 +1,48 @@
+#include "bubble.h"
+#include <QDebug>
+#include <QTimer>
+#include <QKeyEvent>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsEllipseItem>
+
+
+Bubble::Bubble(QGraphicsScene *scene){  
+  
+  m_scene = scene;
+  
+  for(int i=1; i<=5; i++){
+    QGraphicsEllipseItem *e = new QGraphicsEllipseItem();    
+    if(m_bubbles.size()>1){
+      e->setBrush(Qt::cyan);
+      QGraphicsEllipseItem *first = m_bubbles.first();
+      QGraphicsEllipseItem *last = m_bubbles.last(); 
+      e->setRect(400+((25+i)*i), 0, 10, 10); 
+      e->setParentItem(first);
+    }else{
+      e->setRect(400, 0, 10, 10);
+      e->setBrush(Qt::yellow);
+    }
+    m_bubbles.prepend(e);
+    m_scene->addItem(e); 
+  }  
+  
+  m_timer = new QTimer();  
+  m_timer->start(3000);
+  connect(m_timer, SIGNAL(timeout()), SLOT(walk())); 
+  
+}
+
+void Bubble::walk(){ 
+  for(int i=1; i<5; i++){
+    QGraphicsEllipseItem *e = m_bubbles.value(i);
+    e->setPos(e->pos().x(), e->pos().y()+10*i);
+  }
+  new Bubble(m_scene);
+}
+
+
+
+
+ 
+ 
