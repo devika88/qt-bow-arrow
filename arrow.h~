@@ -1,0 +1,27 @@
+#ifndef ARROW_H
+#define ARROW_H
+
+#include <QObject>
+#include <QTimer>
+#include <QGraphicsRectItem>
+
+class QGraphicsScene;
+class QGraphicsView;
+
+class Arrow : public QObject, public QGraphicsRectItem{
+  
+  Q_OBJECT
+  public:
+    Arrow(QGraphicsScene *scene, QGraphicsView *view);
+    bool eventFilter(QObject *object, QEvent *event);
+
+  private:
+    void walk();
+    QGraphicsScene *m_scene;
+    QGraphicsView *m_view;
+    QTimer *m_timer;
+    
+};
+
+#endif
+ 

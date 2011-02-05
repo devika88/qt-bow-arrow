@@ -1,0 +1,29 @@
+#ifndef BUBBLE_H
+#define BUBBLE_H
+
+#include <QList>
+#include <QTimer>
+#include <QObject>
+
+class QGraphicsEllipseItem;
+class QGraphicsScene;
+
+class Bubble : public QObject {
+  
+  Q_OBJECT;
+  public:
+    Bubble();    
+    
+  private slots:
+    void walk();   
+    
+  private:
+    QList<QGraphicsEllipseItem*> m_bubbles;
+    QGraphicsScene *m_scene;
+    QTimer *m_timer;
+  
+};
+
+#endif
+ 
+ 

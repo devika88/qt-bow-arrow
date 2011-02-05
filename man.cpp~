@@ -1,0 +1,16 @@
+#include "man.h"
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
+#include <QTimer>
+#include <QKeyEvent>
+#include <QDebug>
+
+Man::Man(QGraphicsScene *scene){
+   
+}
+
+void Man::walk(){
+  
+}
+
+

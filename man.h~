@@ -1,0 +1,20 @@
+#ifndef MAN_H
+#define MAN_H
+
+#include <QGraphicsRectItem>
+
+class QGraphicsScene;
+
+class Man : public QGraphicsRectItem {
+  
+ 
+  public:
+    Man(QGraphicsScene *scene);
+
+  private:
+    void walk();
+  
+};
+
+#endif
+ 

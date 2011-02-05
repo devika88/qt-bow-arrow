@@ -1,0 +1,36 @@
+#include "arrow.h"
+#include <QTimer>
+#include <QDebug>
+#include <QMouseEvent>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+
+
+
+Arrow::Arrow(QGraphicsScene *scene, QGraphicsView *view){
+  m_scene = scene;
+  m_view = view;
+  setRect(40, 40, 10, 10);
+  setRotation(45);
+  setBrush(Qt::green);
+  m_view->installEventFilter(this); 
+  m_scene->addItem(this);   
+}
+
+void Arrow::walk(){
+   setPos(pos().x()+20,pos().y()); 
+   new Arrow(m_scene, m_view);
+}
+
+bool Arrow::eventFilter(QObject *obj, QEvent *event){
+  if (event->type() != QEvent::MouseButtonPress)
+    return false;
+  
+  m_timer = new QTimer();
+  connect(m_timer, SIGNAL(timeout()), SLOT(walk()));
+  m_timer->start(1000);
+  
+  return true;
+}
+
+
